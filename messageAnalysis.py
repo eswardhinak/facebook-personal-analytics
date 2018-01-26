@@ -9,4 +9,4 @@ for filename in os.listdir(MESSAGES_DIRECTORY):
 
 		conversationHeaderTag = soup.html.head.title
 		if (conversationHeaderTag.string.endswith('Sharon Yeh')):
-			print filename
+			print filename 
