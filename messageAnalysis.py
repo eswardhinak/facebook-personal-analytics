@@ -73,13 +73,14 @@ def getDateTimeObject(date):
 
 MESSAGES_DIRECTORY = './data/facebook-eswardhinak/messages/'
 for filename in os.listdir(MESSAGES_DIRECTORY):
+	if (os.path.isdir(MESSAGES_DIRECTORY + filename)):
+		continue
 	currentFile = open(MESSAGES_DIRECTORY + filename)
 	soup = BeautifulSoup(currentFile.read())
 
 	conversationHeaderTag = soup.html.head.title
 	if (conversationHeaderTag.string.endswith('Aviv Redlich')):
 		print filename
-		# sys.exit()
 		dateList, userNames, parTags = analyzeConversation(soup)
 		dateListAscii = list(map(lambda date:date.encode('ascii', 'ignore'), dateList))
 		datesNoTimeStampList = list(map(getDateNoTimeStamp, dateListAscii))
